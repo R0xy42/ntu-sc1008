@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# Xcode user-specific data and workspaces
+*.xcuserdata/
+*.xcuserdatad/
+*.xcworkspace/
+
+# Xcode project: 只保留 pbxproj（工程配置），其他的不要
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+
+# 调试符号、编译产物（可以随时重新生成）
+*.dSYM/
+*.o
+*.out
+
+# 常见可执行文件名（你这里有一个 main）
+main
+

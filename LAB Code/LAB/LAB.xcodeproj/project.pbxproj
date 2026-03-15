@@ -34,6 +34,14 @@
 			);
 			target = 604F8CFE2F21B7BD00A8635D /* LAB */;
 		};
+		604B01342F653D3C00B418F8 /* Exceptions for "LAB - 06" folder in "LAB" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				rDigitPos.c,
+				rNumDigits.c,
+			);
+			target = 604F8CFE2F21B7BD00A8635D /* LAB */;
+		};
 		609EEDE52F442E2F00CFBE38 /* Exceptions for "LAB - 03" folder in "LAB" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -53,6 +61,14 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		604B01312F6515DA00B418F8 /* LAB - 06 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				604B01342F653D3C00B418F8 /* Exceptions for "LAB - 06" folder in "LAB" target */,
+			);
+			path = "LAB - 06";
+			sourceTree = "<group>";
+		};
 		604F8D012F21B7BD00A8635D /* LAB - 01 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -114,6 +130,7 @@
 				609EEDE22F44277900CFBE38 /* LAB - 03 */,
 				609EEDEA2F44337300CFBE38 /* LAB - 04 */,
 				609EEE342F46979200CFBE38 /* LAB - 05 */,
+				604B01312F6515DA00B418F8 /* LAB - 06 */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,10 +150,10 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				604B01312F6515DA00B418F8 /* LAB - 06 */,
 				604F8D012F21B7BD00A8635D /* LAB - 01 */,
 				609EEDE22F44277900CFBE38 /* LAB - 03 */,
 				609EEDEA2F44337300CFBE38 /* LAB - 04 */,
-				609EEE342F46979200CFBE38 /* LAB - 05 */,
 			);
 			name = LAB;
 			packageProductDependencies = (

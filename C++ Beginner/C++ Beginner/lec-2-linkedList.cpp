@@ -23,14 +23,18 @@ int main(void){
     insertNodeAtEnd(head, 2, "C++ yeah!");
     insertNodeAtEnd(head, 42, "Welcome to Earth Online!");
     
+    /* insert node in between*/
+    insertNodeAtPos(head, 3.14, "pi", -1); //insert at 3rd node.
+    
     /* traverse */
     printList(head);
-    printId(head); //1 -> 2 -> 42 -> NULL
+    printId(head); //1 -> 2 -> 3.14 -> 42 -> NULL
     
     /* delete node */
     cout << "-- Execute node deletion -- " << endl;
     deleteNode(head, 2);
     printList(head);
+    printId(head);
     
     /* delete list*/
     deleteList(head);

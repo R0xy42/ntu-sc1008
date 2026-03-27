@@ -42,6 +42,56 @@ void insertNodeAtEnd(Node*& head, double new_id, string new_str){
     //这句会让里面的内容被删除，变成垃圾值。
 }
 
+
+void insertNodeAtPos(Node*& head, double new_id, string new_str, int pos){
+    //locate pos, traverse
+    //say, pos = 3, then it should be the 3rd node after insertion, means we stop at n=2
+    //need previousPtr to memorize last node, and a nextPtr to memorize the future one.
+    //so, nextPtr = nodePtr->next.
+    //update nodePtr with new one
+    //then make nodePtr->next = nextPtr, previousPtr->next = nodePtr
+    
+    Node* insertNode = new Node;
+    insertNode->name = new_str;
+    insertNode->id = new_id;
+    insertNode->nextNode = nullptr;
+    
+    
+    //handle invalid input:
+    if(pos <= 1){
+        //insert at the head; but I want to curse this f-word user first.
+        cout << "Insert at the first node" << endl;
+        Node* temp = head;
+        head = insertNode;
+        insertNode->nextNode = temp;
+        return;
+    }
+    //handle empty list:
+    if(head == nullptr){
+        head = insertNode;
+        cout << "Empty List! Node can only be inserted as the first node." << endl;
+        return;
+    }
+    
+    
+    Node* previousPtr = nullptr;
+    Node* currPtr = head;
+    int count = 0;
+    while(currPtr != nullptr && count != (pos-1)){ //我们总是让当前的 ptr 不为nullptr，这样可以走到最后一步。
+        previousPtr = currPtr;
+        currPtr = currPtr->nextNode;
+        count++;
+    }
+    if(currPtr == nullptr){//oops,这里 currentPtr 已经指向 nullptr了，所以没法访问 nextNode，直接改成 currPtr 就好了。
+        cout << "Position out of list! Insert at the end." << endl;
+    }
+    
+    previousPtr->nextNode = insertNode;
+    insertNode->nextNode = currPtr;
+    
+}
+
+
 void printList(Node* head){
     //print out the entire list, stop when meet a nullptr;
     //using while loop

@@ -20,6 +20,8 @@ struct Node {
 
 void insertNodeAtEnd(Node*& head, double new_id, string new_str);
 
+void insertNodeAtPos(Node*& head, double new_id, string new_str, int pos);
+
 void printList(Node* head);
 
 void printId(Node* head);

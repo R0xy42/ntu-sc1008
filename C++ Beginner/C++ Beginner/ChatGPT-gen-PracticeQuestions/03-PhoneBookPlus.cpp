@@ -14,10 +14,72 @@ using namespace std;
 class PhoneBook {
 private:
     map<string, string> contacts;
+    string* note;
+    int number;
 
 public:
     // TO-DO: implement the constructor
-    PhoneBook(){}
+    PhoneBook(): note(nullptr), number(0) {}
+    
+    //Rule-of-three
+    //constructor
+    PhoneBook(const string noteOfContacts[], int num) : note(nullptr) ,number(0){
+        if(num > 0){
+            number = num;
+            note = new string[num];
+            for (int i=0; i<num; i++) {
+                note[i] = noteOfContacts[i];
+            }
+        }
+    }
+    
+    //copy constructor
+    PhoneBook(const PhoneBook& other) : contacts(other.contacts), number(0), note(nullptr) {
+        note = new string[other.number];
+        for (int i=0; i<other.number; i++) {
+            note[i] = other.note[i];
+        }
+        number = other.number;
+    }
+    
+    //operator=
+    //return a Phonebook& type so that we can use a=b=c;
+    PhoneBook& operator=(const PhoneBook& other){
+        //node now nullptr, number now 0
+        //This is NOT a constructor! We already have our object constructed here.
+        
+        if(this == &other){ // this: address, &other: address; other: obj
+            return *this; //allowing self , a=a;
+        }
+                
+        //new first, delete old then
+        string* newNote = nullptr;
+        //无论number是否大于0都应该赋值过去。 —— if 的范围；
+        
+//        1. 准备新资源
+//        2. 删除旧资源
+//        3. 更新 contacts
+//        4. 更新 number
+//        5. 更新 note
+        
+        if(other.number>0){
+            newNote = new string[other.number];
+            for (int i=0; i<other.number; i++) {
+                newNote[i] = other.note[i];
+            }
+        }
+        delete [] note; //删除旧资源
+        
+        //准备新资源
+        number = other.number;
+        note = newNote; // delete note address, free memory, and then assign newNote's address to variable note.
+        contacts = other.contacts; // map真方便啊。直接内部写好了拷贝构造。
+        return *this;
+    }
+    
+    ~PhoneBook(){
+        delete [] note;
+    }
     // TO-DO: implement addContact(const string& name, const string& number)
     void addContact(const string& name, const string& number){//const cuz we dont modify it
         contacts[name] = number;
@@ -71,6 +133,35 @@ public:
 
 int main() {
     PhoneBook pb;
+    
+    /* Rule of three test */
+    string notes[] = {"friend", "classmate", "robotics teammate"};
+
+        PhoneBook pb1(notes, 3);
+        pb1.addContact("Alice", "123");
+        pb1.addContact("Bob", "456");
+
+        cout << "pb1:" << endl;
+        pb1.displayAllContacts();
+
+        PhoneBook pb2 = pb1;   // copy constructor
+        cout << "pb2 after copy construction:" << endl;
+        pb2.displayAllContacts();
+
+        PhoneBook pb3;
+        pb3 = pb1;             // copy assignment
+        cout << "pb3 after assignment:" << endl;
+        pb3.displayAllContacts();
+
+        pb3 = pb3;             // self-assignment
+        cout << "pb3 after self-assignment:" << endl;
+        pb3.displayAllContacts();
+
+        PhoneBook empty;
+        pb3 = empty;           // test assigning empty object
+        cout << "pb3 after assigning empty PhoneBook:" << endl;
+        pb3.displayAllContacts();
+
 
     cout << "1) Add Contact" << endl;
     cout << "2) Remove Contact" << endl;
